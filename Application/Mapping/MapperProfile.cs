@@ -1,6 +1,5 @@
 ﻿using Application.ADTO;
 using Application.ADTO.DtoRequests;
-using Application.ADTO.DtoResponse;
 using AutoMapper;
 
 namespace Ecommerce_api.Helpers
@@ -12,10 +11,6 @@ namespace Ecommerce_api.Helpers
             //Requests
             CreateMap<Usuario, UsuarioRequest>().ReverseMap();
             CreateMap<Usuario, LoginRequest>().ReverseMap();
-            CreateMap<Produto, AdicionarProdutoRequest>().ReverseMap();
-
-            //Responses
-            CreateMap<Produto, AdicionarProdutoResponse>();
         }
     }
 }

@@ -1,24 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\CODIGOS\\Ecommerce-api\\Ecommerce-api\\Ecommerce-api.csproj": {}
+    "C:\\Codigos\\Ecommerce-Api\\Ecommerce-api\\Ecommerce-api.csproj": {}
   },
   "projects": {
-    "D:\\CODIGOS\\Ecommerce-api\\Application\\Application.csproj": {
+    "C:\\Codigos\\Ecommerce-Api\\Application\\Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\CODIGOS\\Ecommerce-api\\Application\\Application.csproj",
+        "projectUniqueName": "C:\\Codigos\\Ecommerce-Api\\Application\\Application.csproj",
         "projectName": "Application",
-        "projectPath": "D:\\CODIGOS\\Ecommerce-api\\Application\\Application.csproj",
+        "projectPath": "C:\\Codigos\\Ecommerce-Api\\Application\\Application.csproj",
         "packagesPath": "C:\\Users\\ronie\\.nuget\\packages\\",
-        "outputPath": "D:\\CODIGOS\\Ecommerce-api\\Application\\obj\\",
+        "outputPath": "C:\\Codigos\\Ecommerce-Api\\Application\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
           "C:\\Users\\ronie\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -44,9 +40,9 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
-            "AutoMapper": {
+            "AutoMapper.Extensions.Microsoft.DependencyInjection": {
               "target": "Package",
-              "version": "[11.0.1, )"
+              "version": "[12.0.0, )"
             },
             "MediatR": {
               "target": "Package",
@@ -72,25 +68,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.200\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.302\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\CODIGOS\\Ecommerce-api\\Domain\\Domain.csproj": {
+    "C:\\Codigos\\Ecommerce-Api\\Domain\\Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\CODIGOS\\Ecommerce-api\\Domain\\Domain.csproj",
+        "projectUniqueName": "C:\\Codigos\\Ecommerce-Api\\Domain\\Domain.csproj",
         "projectName": "Domain",
-        "projectPath": "D:\\CODIGOS\\Ecommerce-api\\Domain\\Domain.csproj",
+        "projectPath": "C:\\Codigos\\Ecommerce-Api\\Domain\\Domain.csproj",
         "packagesPath": "C:\\Users\\ronie\\.nuget\\packages\\",
-        "outputPath": "D:\\CODIGOS\\Ecommerce-api\\Domain\\obj\\",
+        "outputPath": "C:\\Codigos\\Ecommerce-Api\\Domain\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
           "C:\\Users\\ronie\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -104,8 +96,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "D:\\CODIGOS\\Ecommerce-api\\Application\\Application.csproj": {
-                "projectPath": "D:\\CODIGOS\\Ecommerce-api\\Application\\Application.csproj"
+              "C:\\Codigos\\Ecommerce-Api\\Application\\Application.csproj": {
+                "projectPath": "C:\\Codigos\\Ecommerce-Api\\Application\\Application.csproj"
               }
             }
           }
@@ -162,25 +154,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.200\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.302\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\CODIGOS\\Ecommerce-api\\Ecommerce-api\\Ecommerce-api.csproj": {
+    "C:\\Codigos\\Ecommerce-Api\\Ecommerce-api\\Ecommerce-api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\CODIGOS\\Ecommerce-api\\Ecommerce-api\\Ecommerce-api.csproj",
+        "projectUniqueName": "C:\\Codigos\\Ecommerce-Api\\Ecommerce-api\\Ecommerce-api.csproj",
         "projectName": "Ecommerce-api",
-        "projectPath": "D:\\CODIGOS\\Ecommerce-api\\Ecommerce-api\\Ecommerce-api.csproj",
+        "projectPath": "C:\\Codigos\\Ecommerce-Api\\Ecommerce-api\\Ecommerce-api.csproj",
         "packagesPath": "C:\\Users\\ronie\\.nuget\\packages\\",
-        "outputPath": "D:\\CODIGOS\\Ecommerce-api\\Ecommerce-api\\obj\\",
+        "outputPath": "C:\\Codigos\\Ecommerce-Api\\Ecommerce-api\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
           "C:\\Users\\ronie\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -194,8 +182,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "D:\\CODIGOS\\Ecommerce-api\\Domain\\Domain.csproj": {
-                "projectPath": "D:\\CODIGOS\\Ecommerce-api\\Domain\\Domain.csproj"
+              "C:\\Codigos\\Ecommerce-Api\\Domain\\Domain.csproj": {
+                "projectPath": "C:\\Codigos\\Ecommerce-Api\\Domain\\Domain.csproj"
               }
             }
           }
@@ -212,7 +200,7 @@
           "dependencies": {
             "AutoMapper": {
               "target": "Package",
-              "version": "[11.0.1, )"
+              "version": "[12.0.0, )"
             },
             "MediatR.Extensions.Microsoft.DependencyInjection": {
               "target": "Package",
@@ -255,7 +243,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.200\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.302\\RuntimeIdentifierGraph.json"
         }
       }
     }

@@ -12,10 +12,6 @@ namespace Domain
     {
         protected readonly IConfiguration Configuration;
 
-        public DbSet<Produto> Produtos { get; set; }
-        public DbSet<Categoria> Categorias { get; set; }
-        public DbSet<ImagensProdutos> ImagensProdutos { get; set; }
-
         public ApplicationDbContext(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -41,16 +37,6 @@ namespace Domain
                     .WithMany(r => r.UserRoles)
                     .HasForeignKey(x => x.UserId)
                     .IsRequired();
-
-                builder.Entity<Categoria>()
-                .HasMany(c => c.Produtos)
-                .WithOne(p => p.Categoria)
-                .HasForeignKey(p => p.CategoriaId);
-
-                builder.Entity<Produto>()
-                    .HasMany(c => c.Imagens)
-                    .WithOne(p => p.Produto)
-                    .HasForeignKey(p => p.ProdutoId);
             });
         }
     }

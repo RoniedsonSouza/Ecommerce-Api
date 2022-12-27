@@ -22,96 +22,7 @@ namespace Domain.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("ADTO.Categoria", b =>
-                {
-                    b.Property<int>("CategoriaId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CategoriaId"), 1L, 1);
-
-                    b.Property<string>("Descricao")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Nome")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("CategoriaId");
-
-                    b.ToTable("Categorias");
-                });
-
-            modelBuilder.Entity("ADTO.ImagensProdutos", b =>
-                {
-                    b.Property<int>("FotoID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("FotoID"), 1L, 1);
-
-                    b.Property<string>("ContentType")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ImageUrl")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<byte[]>("Imagem")
-                        .IsRequired()
-                        .HasColumnType("varbinary(max)");
-
-                    b.Property<int>("ProdutoId")
-                        .HasColumnType("int");
-
-                    b.HasKey("FotoID");
-
-                    b.HasIndex("ProdutoId");
-
-                    b.ToTable("ImagensProdutos");
-                });
-
-            modelBuilder.Entity("ADTO.Produto", b =>
-                {
-                    b.Property<int>("ProdutoId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ProdutoId"), 1L, 1);
-
-                    b.Property<int?>("CategoriaId")
-                        .IsRequired()
-                        .HasColumnType("int");
-
-                    b.Property<string>("Descricao")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("Destaque")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Nome")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<double?>("Preco")
-                        .IsRequired()
-                        .HasColumnType("float");
-
-                    b.Property<int?>("Quantidade")
-                        .IsRequired()
-                        .HasColumnType("int");
-
-                    b.HasKey("ProdutoId");
-
-                    b.HasIndex("CategoriaId");
-
-                    b.ToTable("Produtos");
-                });
-
-            modelBuilder.Entity("ADTO.Role", b =>
+            modelBuilder.Entity("Application.ADTO.Role", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -141,7 +52,7 @@ namespace Domain.Migrations
                     b.ToTable("AspNetRoles", (string)null);
                 });
 
-            modelBuilder.Entity("ADTO.Usuario", b =>
+            modelBuilder.Entity("Application.ADTO.Usuario", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -213,7 +124,7 @@ namespace Domain.Migrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
-            modelBuilder.Entity("ADTO.UsuarioRoles", b =>
+            modelBuilder.Entity("Application.ADTO.UsuarioRoles", b =>
                 {
                     b.Property<int>("UserId")
                         .HasColumnType("int");
@@ -316,37 +227,15 @@ namespace Domain.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("ADTO.ImagensProdutos", b =>
+            modelBuilder.Entity("Application.ADTO.UsuarioRoles", b =>
                 {
-                    b.HasOne("ADTO.Produto", "Produto")
-                        .WithMany("Imagens")
-                        .HasForeignKey("ProdutoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Produto");
-                });
-
-            modelBuilder.Entity("ADTO.Produto", b =>
-                {
-                    b.HasOne("ADTO.Categoria", "Categoria")
-                        .WithMany("Produtos")
-                        .HasForeignKey("CategoriaId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Categoria");
-                });
-
-            modelBuilder.Entity("ADTO.UsuarioRoles", b =>
-                {
-                    b.HasOne("ADTO.Role", "Role")
+                    b.HasOne("Application.ADTO.Role", "Role")
                         .WithMany("UserRoles")
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("ADTO.Usuario", "Usuario")
+                    b.HasOne("Application.ADTO.Usuario", "Usuario")
                         .WithMany("UserRoles")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -359,7 +248,7 @@ namespace Domain.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
                 {
-                    b.HasOne("ADTO.Role", null)
+                    b.HasOne("Application.ADTO.Role", null)
                         .WithMany()
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -368,7 +257,7 @@ namespace Domain.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<int>", b =>
                 {
-                    b.HasOne("ADTO.Usuario", null)
+                    b.HasOne("Application.ADTO.Usuario", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -377,7 +266,7 @@ namespace Domain.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<int>", b =>
                 {
-                    b.HasOne("ADTO.Usuario", null)
+                    b.HasOne("Application.ADTO.Usuario", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -386,29 +275,19 @@ namespace Domain.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<int>", b =>
                 {
-                    b.HasOne("ADTO.Usuario", null)
+                    b.HasOne("Application.ADTO.Usuario", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("ADTO.Categoria", b =>
-                {
-                    b.Navigation("Produtos");
-                });
-
-            modelBuilder.Entity("ADTO.Produto", b =>
-                {
-                    b.Navigation("Imagens");
-                });
-
-            modelBuilder.Entity("ADTO.Role", b =>
+            modelBuilder.Entity("Application.ADTO.Role", b =>
                 {
                     b.Navigation("UserRoles");
                 });
 
-            modelBuilder.Entity("ADTO.Usuario", b =>
+            modelBuilder.Entity("Application.ADTO.Usuario", b =>
                 {
                     b.Navigation("UserRoles");
                 });

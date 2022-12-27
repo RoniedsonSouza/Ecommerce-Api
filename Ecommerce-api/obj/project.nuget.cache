@@ -1,10 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "oIW8jGqS/xbVdZAaF2xQGb0MyKt6O267x5dcqKpTIcNE5iKZSATs2yd2E813nXUNk6V859/s2yWG5GGAGv2QWw==",
+  "dgSpecHash": "RVBGNPALaGzk9iIsCzGt5LaoFvHrhKifsKD6QXCah4zOOMz8dXCVuZBJFDpAqb8DIk7ED6pMqn6b3uA8y3c0lQ==",
   "success": true,
-  "projectFilePath": "D:\\CODIGOS\\Ecommerce-api\\Ecommerce-api\\Ecommerce-api.csproj",
+  "projectFilePath": "C:\\Codigos\\Ecommerce-Api\\Ecommerce-api\\Ecommerce-api.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\ronie\\.nuget\\packages\\automapper\\11.0.1\\automapper.11.0.1.nupkg.sha512",
+    "C:\\Users\\ronie\\.nuget\\packages\\automapper\\12.0.0\\automapper.12.0.0.nupkg.sha512",
+    "C:\\Users\\ronie\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.0\\automapper.extensions.microsoft.dependencyinjection.12.0.0.nupkg.sha512",
     "C:\\Users\\ronie\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\ronie\\.nuget\\packages\\mediatr\\10.0.1\\mediatr.10.0.1.nupkg.sha512",
     "C:\\Users\\ronie\\.nuget\\packages\\mediatr.contracts\\1.0.1\\mediatr.contracts.1.0.1.nupkg.sha512",

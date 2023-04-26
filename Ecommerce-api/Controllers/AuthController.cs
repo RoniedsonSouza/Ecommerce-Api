@@ -42,23 +42,35 @@ namespace Ecommerce_api.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> Login(LoginRequest usuario)
         {
-            var user = await _userManager.FindByNameAsync(usuario.UserName);
-            var result = await _signInManager.CheckPasswordSignInAsync(user, usuario.Password, false);
-
-            if (result.Succeeded)
+            try
             {
-                var appUser = await _userManager.Users
-                    .FirstOrDefaultAsync(x => x.NormalizedUserName == usuario.UserName.ToUpper());
+                var user = await _userManager.FindByNameAsync(usuario.UserName);
+                var result = await _signInManager.CheckPasswordSignInAsync(user, usuario.Password, false);
 
-                var userToReturn = _mapper.Map<LoginRequest>(appUser);
-
-                return Ok(new
+                if (result.Succeeded)
                 {
-                    token = GenerateJWToken(appUser).Result,
-                    user = userToReturn
-                });
+                    var appUser = await _userManager.Users
+                        .FirstOrDefaultAsync(x => x.NormalizedUserName == usuario.UserName.ToUpper());
+
+                    var userToReturn = _mapper.Map<LoginRequest>(appUser);
+
+                    return Ok(new
+                    {
+                        token = GenerateJWToken(appUser).Result,
+                        user = userToReturn
+                    });
+                } else
+                {
+                    return Ok(new
+                    {
+                        Erro = true
+                    });
+                }
             }
-            return Unauthorized();
+            catch (InvalidOperationException ex)
+            {
+                throw ex;
+            }
         }
 
         private async Task<string> GenerateJWToken(Usuario usuario)

@@ -22,18 +22,17 @@ namespace Application.Repositories
 
         public async Task<IEnumerable<T>> GetAll()
         {
-            return entities.ToList();
+            return await entities.ToListAsync();
         }
         public async Task<T> GetById(object id)
         {
-            return entities.Find(id);
+            return await entities.FindAsync(id);
         }
         public async Task<T> Insert(T obj)
         {
-            entities.Add(obj);
-            context.SaveChangesAsync();
-            var objeto = await entities.FindAsync(obj);
-            return objeto;
+            var objctInserted = await entities.AddAsync(obj);
+            await context.SaveChangesAsync();
+            return objctInserted.Entity;
         }
         public async Task<T> Update(T obj)
         {

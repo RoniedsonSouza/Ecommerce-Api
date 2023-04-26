@@ -1,6 +1,11 @@
 using Application.ADTO;
+using Application.Commands.Categorias;
+using Application.Interfaces;
+using Autofac;
+using Autofac.Extensions.DependencyInjection;
 using AutoMapper;
 using Domain;
+using Domain.Repositories;
 using Ecommerce_api.Helpers;
 using MediatR;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -24,8 +29,10 @@ builder.Services.AddControllers(options =>
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-var assembly = Assembly.GetExecutingAssembly();
-builder.Services.AddMediatR(assembly);
+builder.Services.AddMediatR(Assembly.GetExecutingAssembly());
+
+builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
+BuildDependencyInjectionProvider(builder);
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
@@ -88,3 +95,15 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
+static void BuildDependencyInjectionProvider(WebApplicationBuilder builder)
+{
+    var coreAssembly = Assembly.GetAssembly(typeof(Categoria));
+    var infraAssembly = Assembly.GetAssembly(typeof(ApplicationDbContext));
+    var webAssembly = Assembly.GetExecutingAssembly();
+    builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
+    builder.Host.ConfigureContainer<ContainerBuilder>((_, builder) =>
+    {
+        builder.RegisterAssemblyTypes(webAssembly, coreAssembly, infraAssembly).AsImplementedInterfaces();
+    });
+}

@@ -17,6 +17,10 @@ namespace Domain
             Configuration = configuration;
         }
 
+        public DbSet<Produto> Produto { get; set; }
+        public DbSet<Categoria> Categoria { get; set; }
+        public DbSet<ImagensProdutos> ImagensProdutos { get; set; }
+
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {
             options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
@@ -38,6 +42,16 @@ namespace Domain
                     .HasForeignKey(x => x.UserId)
                     .IsRequired();
             });
+
+            builder.Entity<Categoria>()
+                .HasMany(c => c.Produtos)
+                .WithOne(p => p.Categoria)
+                .HasForeignKey(p => p.CategoryId);
+
+            builder.Entity<Produto>()
+                .HasMany(c => c.Imagens)
+                .WithOne(p => p.Produto)
+                .HasForeignKey(p => p.ProdutoId);
         }
     }
 }

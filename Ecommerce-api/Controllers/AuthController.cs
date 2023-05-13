@@ -112,13 +112,21 @@ namespace Ecommerce_api.Controllers
         public async Task<IActionResult> Register(UsuarioRequest usuario)
         {
             var user = _mapper.Map<Usuario>(usuario);
-            var result = await _userManager.CreateAsync(user, usuario.Password);
-            var userToReturn = _mapper.Map<UsuarioRequest>(user);
+            var userExists = await _userManager.FindByNameAsync(usuario.UserName);
+            if (userExists == null)
+            {
+                var result = await _userManager.CreateAsync(user, usuario.Password);
+                var userToReturn = _mapper.Map<UsuarioRequest>(user);
 
-            if (result.Succeeded)
-                return Created("GetUser", userToReturn);
+                if (result.Succeeded)
+                    return Created("GetUser", userToReturn);
 
-            return BadRequest(result.Errors);
+                return BadRequest(result.Errors);
+            } else
+            {
+                return Ok(new { userExists = true });
+            }
+            
         }
     }
 }

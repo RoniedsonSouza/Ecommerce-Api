@@ -22,93 +22,323 @@ namespace Domain.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("Application.ADTO.Categoria", b =>
+            modelBuilder.Entity("Application.ADTO.Batalha", b =>
                 {
-                    b.Property<int>("CategoryId")
+                    b.Property<Guid>("IdBatalha")
                         .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("BatalhaPrivada")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Cep")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("Chave")
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CategoryId"), 1L, 1);
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
 
-                    b.Property<string>("Description")
+                    b.Property<DateTime>("DataBatalha")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("Edicao")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasDefaultValue(0);
+
+                    b.Property<bool>("GerarQRCode")
+                        .HasColumnType("bit");
+
+                    b.Property<Guid>("IdOrganizacao")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("LatLong")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Likes")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("Numero")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("OcultarBatalha")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Referencia")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Rua")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Name")
+                    b.Property<bool>("SorteioAutomatico")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("TipoChaveChave")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Titulo")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("CategoryId");
+                    b.HasKey("IdBatalha");
 
-                    b.ToTable("Categoria");
+                    b.HasIndex("IdOrganizacao");
+
+                    b.HasIndex("TipoChaveChave");
+
+                    b.ToTable("Batalha");
                 });
 
-            modelBuilder.Entity("Application.ADTO.ImagensProdutos", b =>
+            modelBuilder.Entity("Application.ADTO.ConvidadosEvento", b =>
                 {
-                    b.Property<int>("FotoID")
+                    b.Property<Guid>("IdConvidadoEvento")
                         .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Apelido")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<byte[]>("FotoConvidado")
+                        .HasColumnType("varbinary(max)");
+
+                    b.Property<Guid>("IdEvento")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("IdUsuario")
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("FotoID"), 1L, 1);
-
-                    b.Property<string>("ContentType")
-                        .IsRequired()
+                    b.Property<string>("Nome")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ImageUrl")
-                        .IsRequired()
+                    b.HasKey("IdConvidadoEvento");
+
+                    b.HasIndex("IdEvento");
+
+                    b.HasIndex("IdUsuario");
+
+                    b.ToTable("ConvidadosEvento");
+                });
+
+            modelBuilder.Entity("Application.ADTO.Evento", b =>
+                {
+                    b.Property<Guid>("IdEvento")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("BatalhaIdBatalha")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Cep")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("DataEvento")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("Edicao")
+                        .HasColumnType("int");
+
+                    b.Property<Guid?>("IdBatalha")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int?>("Numero")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Referencia")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Rua")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("IdEvento");
+
+                    b.HasIndex("BatalhaIdBatalha");
+
+                    b.ToTable("Evento");
+                });
+
+            modelBuilder.Entity("Application.ADTO.ImagensBatalha", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("BatalhaIdBatalha")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("IdBatalha")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<byte[]>("Imagem")
                         .IsRequired()
                         .HasColumnType("varbinary(max)");
 
-                    b.Property<int>("ProdutoId")
-                        .HasColumnType("int");
+                    b.HasKey("Id");
 
-                    b.HasKey("FotoID");
+                    b.HasIndex("BatalhaIdBatalha");
 
-                    b.HasIndex("ProdutoId");
-
-                    b.ToTable("ImagensProdutos");
+                    b.ToTable("ImagensBatalha");
                 });
 
-            modelBuilder.Entity("Application.ADTO.Produto", b =>
+            modelBuilder.Entity("Application.ADTO.Organizacao", b =>
                 {
-                    b.Property<int>("ProdutoId")
+                    b.Property<Guid>("IdOrganizacao")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("uniqueidentifier");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ProdutoId"), 1L, 1);
-
-                    b.Property<int?>("CategoryId")
-                        .IsRequired()
-                        .HasColumnType("int");
-
-                    b.Property<string>("Descricao")
-                        .IsRequired()
+                    b.Property<string>("CNPJ")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("Destaque")
+                    b.Property<string>("Cep")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("Deleted")
                         .HasColumnType("bit");
 
-                    b.Property<string>("Name")
-                        .IsRequired()
+                    b.Property<string>("LatLong")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<double?>("Preco")
-                        .IsRequired()
-                        .HasColumnType("float");
-
-                    b.Property<int?>("Quantidade")
-                        .IsRequired()
+                    b.Property<int>("Likes")
                         .HasColumnType("int");
 
-                    b.HasKey("ProdutoId");
+                    b.Property<byte[]>("LogoOrganizacao")
+                        .HasColumnType("varbinary(max)");
 
-                    b.HasIndex("CategoryId");
+                    b.Property<string>("Nome")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.ToTable("Produto");
+                    b.Property<int?>("Numero")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Referencia")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Rua")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Twitch")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Youtube")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("IdOrganizacao");
+
+                    b.ToTable("Organizacao");
+                });
+
+            modelBuilder.Entity("Application.ADTO.ParticipantesBatalha", b =>
+                {
+                    b.Property<Guid>("IdParticipanteBatalha")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Apelido")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<byte[]>("FotoParticipante")
+                        .HasColumnType("varbinary(max)");
+
+                    b.Property<Guid>("IdBatalha")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("IdUsuario")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Nome")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Ranking")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Tipo")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Votos")
+                        .HasColumnType("int");
+
+                    b.HasKey("IdParticipanteBatalha");
+
+                    b.HasIndex("IdBatalha");
+
+                    b.HasIndex("IdUsuario");
+
+                    b.HasIndex("Tipo");
+
+                    b.ToTable("ParticipantesBatalha");
+                });
+
+            modelBuilder.Entity("Application.ADTO.ParticipantesEvento", b =>
+                {
+                    b.Property<Guid>("IdParticipanteEvento")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Apelido")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("BatalhaIdEvento")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<byte[]>("FotoParticipante")
+                        .HasColumnType("varbinary(max)");
+
+                    b.Property<Guid>("IdEvento")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("IdUsuario")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Nome")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Ranking")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Tipo")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Votos")
+                        .HasColumnType("int");
+
+                    b.HasKey("IdParticipanteEvento");
+
+                    b.HasIndex("BatalhaIdEvento");
+
+                    b.HasIndex("IdUsuario");
+
+                    b.HasIndex("Tipo");
+
+                    b.ToTable("ParticipantesEvento");
+                });
+
+            modelBuilder.Entity("Application.ADTO.ParticipantesOrganizacao", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("IdOrganizacao")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("IdUsuarioParticipante")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("IdOrganizacao");
+
+                    b.HasIndex("IdUsuarioParticipante");
+
+                    b.ToTable("ParticipantesOrganizacao");
                 });
 
             modelBuilder.Entity("Application.ADTO.Role", b =>
@@ -141,6 +371,84 @@ namespace Domain.Migrations
                     b.ToTable("AspNetRoles", (string)null);
                 });
 
+            modelBuilder.Entity("Application.ADTO.TipoChaveBatalha", b =>
+                {
+                    b.Property<int>("Chave")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Chave"), 1L, 1);
+
+                    b.Property<string>("TipoChave")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Chave");
+
+                    b.ToTable("TipoChaveBatalha");
+
+                    b.HasData(
+                        new
+                        {
+                            Chave = 1,
+                            TipoChave = "1x1"
+                        },
+                        new
+                        {
+                            Chave = 2,
+                            TipoChave = "2x2"
+                        },
+                        new
+                        {
+                            Chave = 3,
+                            TipoChave = "3x3"
+                        },
+                        new
+                        {
+                            Chave = 4,
+                            TipoChave = "Frenética"
+                        });
+                });
+
+            modelBuilder.Entity("Application.ADTO.TipoParticipanteBatalha", b =>
+                {
+                    b.Property<int>("Tipo")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Tipo"), 1L, 1);
+
+                    b.Property<string>("NomeTipo")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Tipo");
+
+                    b.ToTable("TipoParticipanteBatalha");
+
+                    b.HasData(
+                        new
+                        {
+                            Tipo = 1,
+                            NomeTipo = "Responsável"
+                        },
+                        new
+                        {
+                            Tipo = 2,
+                            NomeTipo = "Jurados"
+                        },
+                        new
+                        {
+                            Tipo = 3,
+                            NomeTipo = "Mcs"
+                        },
+                        new
+                        {
+                            Tipo = 4,
+                            NomeTipo = "Djs"
+                        });
+                });
+
             modelBuilder.Entity("Application.ADTO.Usuario", b =>
                 {
                     b.Property<int>("Id")
@@ -152,9 +460,16 @@ namespace Domain.Migrations
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
 
+                    b.Property<string>("Apelido")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Email")
                         .HasMaxLength(256)
@@ -162,6 +477,10 @@ namespace Domain.Migrations
 
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("bit");
+
+                    b.Property<byte[]>("FotoUsuario")
+                        .IsRequired()
+                        .HasColumnType("varbinary(max)");
 
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("bit");
@@ -316,26 +635,133 @@ namespace Domain.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("Application.ADTO.ImagensProdutos", b =>
+            modelBuilder.Entity("Application.ADTO.Batalha", b =>
                 {
-                    b.HasOne("Application.ADTO.Produto", "Produto")
-                        .WithMany("Imagens")
-                        .HasForeignKey("ProdutoId")
+                    b.HasOne("Application.ADTO.Organizacao", "Organizacao")
+                        .WithMany("Batalhas")
+                        .HasForeignKey("IdOrganizacao")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Produto");
+                    b.HasOne("Application.ADTO.TipoChaveBatalha", "TipoChave")
+                        .WithMany()
+                        .HasForeignKey("TipoChaveChave")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Organizacao");
+
+                    b.Navigation("TipoChave");
                 });
 
-            modelBuilder.Entity("Application.ADTO.Produto", b =>
+            modelBuilder.Entity("Application.ADTO.ConvidadosEvento", b =>
                 {
-                    b.HasOne("Application.ADTO.Categoria", "Categoria")
-                        .WithMany("Produtos")
-                        .HasForeignKey("CategoryId")
+                    b.HasOne("Application.ADTO.Evento", "Evento")
+                        .WithMany("ConvidadosEvento")
+                        .HasForeignKey("IdEvento")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Categoria");
+                    b.HasOne("Application.ADTO.Usuario", "Usuario")
+                        .WithMany("ConvidadosEvento")
+                        .HasForeignKey("IdUsuario")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Evento");
+
+                    b.Navigation("Usuario");
+                });
+
+            modelBuilder.Entity("Application.ADTO.Evento", b =>
+                {
+                    b.HasOne("Application.ADTO.Batalha", "Batalha")
+                        .WithMany()
+                        .HasForeignKey("BatalhaIdBatalha")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Batalha");
+                });
+
+            modelBuilder.Entity("Application.ADTO.ImagensBatalha", b =>
+                {
+                    b.HasOne("Application.ADTO.Batalha", null)
+                        .WithMany("ImagensBatalha")
+                        .HasForeignKey("BatalhaIdBatalha");
+                });
+
+            modelBuilder.Entity("Application.ADTO.ParticipantesBatalha", b =>
+                {
+                    b.HasOne("Application.ADTO.Batalha", "Batalha")
+                        .WithMany("ParticipantesBatalha")
+                        .HasForeignKey("IdBatalha")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Application.ADTO.Usuario", "Usuario")
+                        .WithMany("ParticipantesBatalha")
+                        .HasForeignKey("IdUsuario")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Application.ADTO.TipoParticipanteBatalha", "TipoParticipante")
+                        .WithMany("ParticipantesBatalha")
+                        .HasForeignKey("Tipo")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Batalha");
+
+                    b.Navigation("TipoParticipante");
+
+                    b.Navigation("Usuario");
+                });
+
+            modelBuilder.Entity("Application.ADTO.ParticipantesEvento", b =>
+                {
+                    b.HasOne("Application.ADTO.Evento", "Batalha")
+                        .WithMany("ParticipantesEvento")
+                        .HasForeignKey("BatalhaIdEvento")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Application.ADTO.Usuario", "Usuario")
+                        .WithMany("ParticipantesEvento")
+                        .HasForeignKey("IdUsuario")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Application.ADTO.TipoParticipanteBatalha", "TipoParticipante")
+                        .WithMany("ParticipantesEvento")
+                        .HasForeignKey("Tipo")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Batalha");
+
+                    b.Navigation("TipoParticipante");
+
+                    b.Navigation("Usuario");
+                });
+
+            modelBuilder.Entity("Application.ADTO.ParticipantesOrganizacao", b =>
+                {
+                    b.HasOne("Application.ADTO.Organizacao", "Organizacao")
+                        .WithMany("Participantes")
+                        .HasForeignKey("IdOrganizacao")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Application.ADTO.Usuario", "UsuarioParticipante")
+                        .WithMany("ParticipantesOrganizacao")
+                        .HasForeignKey("IdUsuarioParticipante")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Organizacao");
+
+                    b.Navigation("UsuarioParticipante");
                 });
 
             modelBuilder.Entity("Application.ADTO.UsuarioRoles", b =>
@@ -393,14 +819,25 @@ namespace Domain.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Application.ADTO.Categoria", b =>
+            modelBuilder.Entity("Application.ADTO.Batalha", b =>
                 {
-                    b.Navigation("Produtos");
+                    b.Navigation("ImagensBatalha");
+
+                    b.Navigation("ParticipantesBatalha");
                 });
 
-            modelBuilder.Entity("Application.ADTO.Produto", b =>
+            modelBuilder.Entity("Application.ADTO.Evento", b =>
                 {
-                    b.Navigation("Imagens");
+                    b.Navigation("ConvidadosEvento");
+
+                    b.Navigation("ParticipantesEvento");
+                });
+
+            modelBuilder.Entity("Application.ADTO.Organizacao", b =>
+                {
+                    b.Navigation("Batalhas");
+
+                    b.Navigation("Participantes");
                 });
 
             modelBuilder.Entity("Application.ADTO.Role", b =>
@@ -408,8 +845,23 @@ namespace Domain.Migrations
                     b.Navigation("UserRoles");
                 });
 
+            modelBuilder.Entity("Application.ADTO.TipoParticipanteBatalha", b =>
+                {
+                    b.Navigation("ParticipantesBatalha");
+
+                    b.Navigation("ParticipantesEvento");
+                });
+
             modelBuilder.Entity("Application.ADTO.Usuario", b =>
                 {
+                    b.Navigation("ConvidadosEvento");
+
+                    b.Navigation("ParticipantesBatalha");
+
+                    b.Navigation("ParticipantesEvento");
+
+                    b.Navigation("ParticipantesOrganizacao");
+
                     b.Navigation("UserRoles");
                 });
 #pragma warning restore 612, 618

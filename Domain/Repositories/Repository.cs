@@ -34,6 +34,12 @@ namespace Application.Repositories
             await context.SaveChangesAsync();
             return objctInserted.Entity;
         }
+        public async Task<List<T>> InsertRangeAsync(List<T> obj)
+        {
+            await entities.AddRangeAsync(obj);
+            await context.SaveChangesAsync();
+            return obj;
+        }
         public async Task<T> Update(T obj)
         {
             entities.Attach(obj);

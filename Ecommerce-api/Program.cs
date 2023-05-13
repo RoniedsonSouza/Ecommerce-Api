@@ -1,11 +1,8 @@
 using Application.ADTO;
-using Application.Commands.Categorias;
-using Application.Interfaces;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using AutoMapper;
 using Domain;
-using Domain.Repositories;
 using Ecommerce_api.Helpers;
 using MediatR;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -16,6 +13,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Reflection;
 using System.Text;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -24,7 +22,9 @@ builder.Services.AddControllers(options =>
 {
     var policy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
     options.Filters.Add(new AuthorizeFilter(policy));
-});
+}).AddJsonOptions(o => o.JsonSerializerOptions
+                .ReferenceHandler = ReferenceHandler.Preserve);
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -75,7 +75,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             ValidateIssuer = false,
             ValidateAudience = false
         };
-    });
+    });     
 
 var app = builder.Build();
 
@@ -91,6 +91,7 @@ app.UseHttpsRedirection();
 
 app.UseAuthentication();
 app.UseAuthorization();
+app.UseWebSockets();
 
 app.MapControllers();
 
@@ -98,7 +99,7 @@ app.Run();
 
 static void BuildDependencyInjectionProvider(WebApplicationBuilder builder)
 {
-    var coreAssembly = Assembly.GetAssembly(typeof(Categoria));
+    var coreAssembly = Assembly.GetAssembly(typeof(Batalha));
     var infraAssembly = Assembly.GetAssembly(typeof(ApplicationDbContext));
     var webAssembly = Assembly.GetExecutingAssembly();
     builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());

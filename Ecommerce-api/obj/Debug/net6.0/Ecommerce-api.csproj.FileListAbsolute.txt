@@ -82,7 +82,11 @@ C:\Codigos\Ecommerce-Api\Ecommerce-api\bin\Debug\net6.0\Ecommerce-api.deps.json
 C:\Codigos\Ecommerce-Api\Ecommerce-api\bin\Debug\net6.0\Ecommerce-api.runtimeconfig.json
 C:\Codigos\Ecommerce-Api\Ecommerce-api\bin\Debug\net6.0\Ecommerce-api.dll
 C:\Codigos\Ecommerce-Api\Ecommerce-api\bin\Debug\net6.0\Ecommerce-api.pdb
+C:\Codigos\Ecommerce-Api\Ecommerce-api\bin\Debug\net6.0\Autofac.dll
+C:\Codigos\Ecommerce-Api\Ecommerce-api\bin\Debug\net6.0\Autofac.Extensions.DependencyInjection.dll
 C:\Codigos\Ecommerce-Api\Ecommerce-api\bin\Debug\net6.0\AutoMapper.dll
+C:\Codigos\Ecommerce-Api\Ecommerce-api\bin\Debug\net6.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+C:\Codigos\Ecommerce-Api\Ecommerce-api\bin\Debug\net6.0\Dapper.dll
 C:\Codigos\Ecommerce-Api\Ecommerce-api\bin\Debug\net6.0\Humanizer.dll
 C:\Codigos\Ecommerce-Api\Ecommerce-api\bin\Debug\net6.0\MediatR.dll
 C:\Codigos\Ecommerce-Api\Ecommerce-api\bin\Debug\net6.0\MediatR.Contracts.dll
@@ -110,6 +114,7 @@ C:\Codigos\Ecommerce-Api\Ecommerce-api\bin\Debug\net6.0\Microsoft.IdentityModel.
 C:\Codigos\Ecommerce-Api\Ecommerce-api\bin\Debug\net6.0\Microsoft.IdentityModel.Tokens.dll
 C:\Codigos\Ecommerce-Api\Ecommerce-api\bin\Debug\net6.0\Microsoft.OpenApi.dll
 C:\Codigos\Ecommerce-Api\Ecommerce-api\bin\Debug\net6.0\Microsoft.Win32.SystemEvents.dll
+C:\Codigos\Ecommerce-Api\Ecommerce-api\bin\Debug\net6.0\Newtonsoft.Json.dll
 C:\Codigos\Ecommerce-Api\Ecommerce-api\bin\Debug\net6.0\Swashbuckle.AspNetCore.Swagger.dll
 C:\Codigos\Ecommerce-Api\Ecommerce-api\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerGen.dll
 C:\Codigos\Ecommerce-Api\Ecommerce-api\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerUI.dll
@@ -152,6 +157,3 @@ C:\Codigos\Ecommerce-Api\Ecommerce-api\obj\Debug\net6.0\refint\Ecommerce-api.dll
 C:\Codigos\Ecommerce-Api\Ecommerce-api\obj\Debug\net6.0\Ecommerce-api.pdb
 C:\Codigos\Ecommerce-Api\Ecommerce-api\obj\Debug\net6.0\Ecommerce-api.genruntimeconfig.cache
 C:\Codigos\Ecommerce-Api\Ecommerce-api\obj\Debug\net6.0\ref\Ecommerce-api.dll
-C:\Codigos\Ecommerce-Api\Ecommerce-api\bin\Debug\net6.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
-C:\Codigos\Ecommerce-Api\Ecommerce-api\bin\Debug\net6.0\Autofac.dll
-C:\Codigos\Ecommerce-Api\Ecommerce-api\bin\Debug\net6.0\Autofac.Extensions.DependencyInjection.dll

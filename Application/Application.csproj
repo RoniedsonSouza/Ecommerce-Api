@@ -12,4 +12,9 @@
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.3" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="CommandHandler\Organizacoes\OrganizacaoQueryes\" />
+    <Folder Include="Enum\" />
+  </ItemGroup>
+
 </Project>

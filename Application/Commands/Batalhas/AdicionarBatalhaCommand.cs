@@ -6,7 +6,7 @@ namespace Application.Commands
 {
     public class AdicionarBatalhaCommand : DefaultModel, IRequest<Batalha>
     {
-        public Guid IdOrganizacao { get; set; }
+        public Guid? IdOrganizacao { get; set; }
         public string Titulo { get; set; }
         public int Edicao { get; set; }
         public string Rua { get; set; }
@@ -21,7 +21,7 @@ namespace Application.Commands
         public bool OcultarBatalha { get; set; }
         public bool GerarQRCode { get; set; }
         public int Likes { get; set; }
-        public List<ParticipantesBatalhaRequest> ParticipantesBatalha { get; set; }
-        public List<ImagensBatalha> ImagensBatalha { get; set; }
+        public List<ParticipantesBatalhaRequest>? ParticipantesBatalha { get; set; }
+        public List<ImagensBatalha>? ImagensBatalha { get; set; }
     }
 }

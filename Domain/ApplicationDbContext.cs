@@ -42,7 +42,8 @@ namespace Domain
         public DbSet<Evento> Evento { get; set; }
         public DbSet<ParticipantesEvento> ParticipantesEvento { get; set; }
         public DbSet<ConvidadosEvento> ConvidadosEvento { get; set; }
-
+        public DbSet<LoginCache> LoginCache { get; set; }
+        public DbSet<ImagensBatalha> ImagensBatalha { get; set; }
 
 
         protected override void OnConfiguring(DbContextOptionsBuilder options)
@@ -67,6 +68,18 @@ namespace Domain
                     .IsRequired();
             });
 
+            builder.Entity<ParticipantesBatalha>(participantesBatalha =>
+            {
+                participantesBatalha.Property(e => e.Ranking).HasDefaultValue(0);
+                participantesBatalha.Property(e => e.Ranking).ValueGeneratedOnAdd();
+
+                participantesBatalha.Property(e => e.Votos).HasDefaultValue(0);
+                participantesBatalha.Property(e => e.Votos).ValueGeneratedOnAdd();
+
+                participantesBatalha.Property(e => e.Vencedor).HasDefaultValue(0);
+                participantesBatalha.Property(e => e.Vencedor).ValueGeneratedOnAdd();
+            });
+
             builder.Entity<Batalha>(batalha =>
             {
                 batalha.Property(e => e.Edicao).HasDefaultValue(0);
@@ -77,6 +90,11 @@ namespace Domain
                 .HasOne(c => c.Organizacao)
                 .WithMany(a => a.Batalhas)
                 .HasForeignKey(b => b.IdOrganizacao);
+
+            builder.Entity<ImagensBatalha>()
+                .HasOne(c => c.Batalha)
+                .WithMany(a => a.ImagensBatalha)
+                .HasForeignKey(b => b.IdBatalha);
 
             builder.Entity<ParticipantesOrganizacao>()
                 .HasOne(c => c.Organizacao)
@@ -104,7 +122,9 @@ namespace Domain
                  .HasForeignKey(b => b.Tipo);
 
             builder.Entity<Batalha>()
-                .HasOne(b => b.TipoChave);
+                .HasOne(b => b.TipoChave)
+                .WithMany(c => c.Batalhas)
+                .HasForeignKey(d => d.Chave);
 
             builder.Entity<Evento>()
                 .HasOne(b => b.Batalha);

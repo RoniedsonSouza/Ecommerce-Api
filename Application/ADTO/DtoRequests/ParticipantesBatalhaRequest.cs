@@ -8,5 +8,10 @@
         public string? Apelido { get; set; }
         public byte[]? FotoParticipante { get; set; }
         public int Tipo { get; set; }
+        public int Ranking { get; set; }
+        public int Votos { get; set; }
+        public int Grupo { get; set; }
+        public int Posicao { get; set; }
+        public bool Vencedor { get; set; }
     }
 }

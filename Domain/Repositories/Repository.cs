@@ -1,4 +1,4 @@
-﻿using Application.Interfaces;
+﻿using Application.Interfaces.Repository;
 using Domain;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -20,7 +20,7 @@ namespace Application.Repositories
             entities = context.Set<T>();
         }
 
-        public async Task<IEnumerable<T>> GetAll()
+        public async Task<IReadOnlyList<T>> GetAll()
         {
             return await entities.ToListAsync();
         }
@@ -30,32 +30,30 @@ namespace Application.Repositories
         }
         public async Task<T> Insert(T obj)
         {
-            var objctInserted = await entities.AddAsync(obj);
+            var result = await entities.AddAsync(obj);
             await context.SaveChangesAsync();
-            return objctInserted.Entity;
+            return result.Entity;
         }
-        public async Task<List<T>> InsertRangeAsync(List<T> obj)
+        public async Task InsertRangeAsync(List<T> obj)
         {
             await entities.AddRangeAsync(obj);
             await context.SaveChangesAsync();
-            return obj;
         }
-        public async Task<T> Update(T obj)
+        public async Task Update(T obj)
         {
-            entities.Attach(obj);
-            context.Entry(obj).State = EntityState.Modified;
-            var objeto = await entities.FindAsync(obj);
-            return objeto;
+            //entities.Attach(obj);
+            //context.Entry(obj).State = EntityState.Modified;
+            //var objeto = await entities.FindAsync(obj);
+            //return objeto;
+            context.Update(obj);
         }
-        public async Task<bool> Delete(object id)
+        public async Task Delete(object id)
         {
             T existing = await entities.FindAsync(id);
             if (existing != null)
             {
                 entities.Remove(existing);
-                return true;
             }
-            return false;
         }
     }
 }

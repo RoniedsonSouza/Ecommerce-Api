@@ -1,5 +1,5 @@
 ﻿using Application.ADTO;
-using Application.Interfaces;
+using Application.Interfaces.Repository;
 using Application.Repositories;
 using System;
 using System.Collections.Generic;

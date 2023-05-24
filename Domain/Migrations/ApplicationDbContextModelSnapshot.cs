@@ -54,7 +54,7 @@ namespace Domain.Migrations
                     b.Property<bool>("GerarQRCode")
                         .HasColumnType("bit");
 
-                    b.Property<Guid>("IdOrganizacao")
+                    b.Property<Guid?>("IdOrganizacao")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("LatLong")
@@ -79,18 +79,14 @@ namespace Domain.Migrations
                     b.Property<bool>("SorteioAutomatico")
                         .HasColumnType("bit");
 
-                    b.Property<int>("TipoChaveChave")
-                        .HasColumnType("int");
-
                     b.Property<string>("Titulo")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("IdBatalha");
 
-                    b.HasIndex("IdOrganizacao");
+                    b.HasIndex("Chave");
 
-                    b.HasIndex("TipoChaveChave");
+                    b.HasIndex("IdOrganizacao");
 
                     b.ToTable("Batalha");
                 });
@@ -185,6 +181,41 @@ namespace Domain.Migrations
                     b.ToTable("ImagensBatalha");
                 });
 
+            modelBuilder.Entity("Application.ADTO.LoginCache", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("Ativo")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("IdUsuario")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Nome")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Token")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("LoginCache");
+                });
+
             modelBuilder.Entity("Application.ADTO.Organizacao", b =>
                 {
                     b.Property<Guid>("IdOrganizacao")
@@ -247,6 +278,9 @@ namespace Domain.Migrations
                     b.Property<byte[]>("FotoParticipante")
                         .HasColumnType("varbinary(max)");
 
+                    b.Property<int>("Grupo")
+                        .HasColumnType("int");
+
                     b.Property<Guid>("IdBatalha")
                         .HasColumnType("uniqueidentifier");
 
@@ -256,14 +290,26 @@ namespace Domain.Migrations
                     b.Property<string>("Nome")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Ranking")
+                    b.Property<int>("Posicao")
                         .HasColumnType("int");
+
+                    b.Property<int>("Ranking")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasDefaultValue(0);
 
                     b.Property<int>("Tipo")
                         .HasColumnType("int");
 
+                    b.Property<bool>("Vencedor")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(false);
+
                     b.Property<int>("Votos")
-                        .HasColumnType("int");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasDefaultValue(0);
 
                     b.HasKey("IdParticipanteBatalha");
 
@@ -479,7 +525,6 @@ namespace Domain.Migrations
                         .HasColumnType("bit");
 
                     b.Property<byte[]>("FotoUsuario")
-                        .IsRequired()
                         .HasColumnType("varbinary(max)");
 
                     b.Property<bool>("LockoutEnabled")
@@ -637,17 +682,13 @@ namespace Domain.Migrations
 
             modelBuilder.Entity("Application.ADTO.Batalha", b =>
                 {
+                    b.HasOne("Application.ADTO.TipoChaveBatalha", "TipoChave")
+                        .WithMany("Batalhas")
+                        .HasForeignKey("Chave");
+
                     b.HasOne("Application.ADTO.Organizacao", "Organizacao")
                         .WithMany("Batalhas")
-                        .HasForeignKey("IdOrganizacao")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Application.ADTO.TipoChaveBatalha", "TipoChave")
-                        .WithMany()
-                        .HasForeignKey("TipoChaveChave")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("IdOrganizacao");
 
                     b.Navigation("Organizacao");
 
@@ -843,6 +884,11 @@ namespace Domain.Migrations
             modelBuilder.Entity("Application.ADTO.Role", b =>
                 {
                     b.Navigation("UserRoles");
+                });
+
+            modelBuilder.Entity("Application.ADTO.TipoChaveBatalha", b =>
+                {
+                    b.Navigation("Batalhas");
                 });
 
             modelBuilder.Entity("Application.ADTO.TipoParticipanteBatalha", b =>

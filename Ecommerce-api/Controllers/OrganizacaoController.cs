@@ -1,6 +1,7 @@
 ﻿using Application.ADTO;
 using Application.Commands;
 using Application.Interfaces;
+using Ecommerce_api.Extensions;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,7 +9,7 @@ namespace Ecommerce_api.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class OrganizacaoController : ControllerBase
+    public class OrganizacaoController : RAPControllerBase
     {
         private readonly IMediator _mediator;
         public OrganizacaoController(IMediator mediator)

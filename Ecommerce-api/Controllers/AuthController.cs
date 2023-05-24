@@ -1,6 +1,8 @@
 ﻿using Application.ADTO;
 using Application.ADTO.DtoRequests;
+using Application.Interfaces.Repository;
 using AutoMapper;
+using Ecommerce_api.Extensions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -14,19 +16,22 @@ namespace Ecommerce_api.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class AuthController : ControllerBase
+    public class AuthController : RAPControllerBase
     {
         private readonly IConfiguration _configuration;
+        private readonly ILoginCacheRepository _loginCacheRepository;
         private readonly UserManager<Usuario> _userManager;
         private readonly SignInManager<Usuario> _signInManager;
         private readonly IMapper _mapper;
 
         public AuthController(IConfiguration configuration,
+            ILoginCacheRepository loginCacheRepository,
             UserManager<Usuario> userManager,
             SignInManager<Usuario> signInManager,
             IMapper mapper)
         {
             _configuration = configuration;
+            _loginCacheRepository = loginCacheRepository;
             _userManager = userManager;
             _signInManager = signInManager;
             _mapper = mapper;
@@ -46,25 +51,38 @@ namespace Ecommerce_api.Controllers
             {
                 var user = await _userManager.FindByNameAsync(usuario.UserName);
                 var result = await _signInManager.CheckPasswordSignInAsync(user, usuario.Password, false);
+                var userLogged = await _loginCacheRepository.GetUserLoginByUserName(usuario.UserName);
 
                 if (result.Succeeded)
                 {
                     var appUser = await _userManager.Users
                         .FirstOrDefaultAsync(x => x.NormalizedUserName == usuario.UserName.ToUpper());
+                    var generatedToken = GenerateJWToken(appUser).Result;
+
+                    var criarLoginCache = await _loginCacheRepository.Insert(new LoginCache
+                    {
+                        IdUsuario = user.Id,
+                        UserName = user.UserName,
+                        Nome = user.Nome,
+                        Token = generatedToken,
+                        Ativo = true
+                    });
 
                     var userToReturn = _mapper.Map<LoginRequest>(appUser);
 
                     return Ok(new
                     {
-                        token = GenerateJWToken(appUser).Result,
+                        token = generatedToken,
                         user = userToReturn
                     });
-                } else
+                }
+                else if (userLogged != null)
                 {
-                    return Ok(new
-                    {
-                        Erro = true
-                    });
+                    return Ok(new { Message = "Usuário já está logado!" });
+                }
+                else
+                {
+                    return Ok(new { Message = "Usuário ou senha incorretos!" });
                 }
             }
             catch (InvalidOperationException ex)
@@ -122,11 +140,18 @@ namespace Ecommerce_api.Controllers
                     return Created("GetUser", userToReturn);
 
                 return BadRequest(result.Errors);
-            } else
+            }
+            else
             {
                 return Ok(new { userExists = true });
             }
-            
+        }
+
+        [HttpPost("DeslogarUsuario")]
+        public async Task<IActionResult> Deslogar()
+        {
+            var deslogado = await _loginCacheRepository.DeleteUserByToken(token);
+            return deslogado ? Ok() : BadRequest();
         }
     }
 }

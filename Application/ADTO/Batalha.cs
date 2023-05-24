@@ -6,8 +6,8 @@ namespace Application.ADTO
     {
         [Key]
         public Guid IdBatalha { get; set; }
-        public Guid IdOrganizacao { get; set; }
-        public string Titulo { get; set; }
+        public Guid? IdOrganizacao { get; set; }
+        public string? Titulo { get; set; }
         public int Edicao { get; set; }
         public string Rua { get; set; }
         public int? Numero { get; set; }
@@ -21,9 +21,9 @@ namespace Application.ADTO
         public bool OcultarBatalha { get; set; }
         public bool GerarQRCode { get; set; }
         public int Likes { get; set; }
-        public virtual List<ImagensBatalha> ImagensBatalha { get; set; }
+        public virtual List<ImagensBatalha>? ImagensBatalha { get; set; }
         public virtual List<ParticipantesBatalha>? ParticipantesBatalha { get; set; }
         public virtual Organizacao? Organizacao { get; set; }
-        public virtual TipoChaveBatalha TipoChave { get; set; }
+        public virtual TipoChaveBatalha? TipoChave { get; set; }
     }
 }

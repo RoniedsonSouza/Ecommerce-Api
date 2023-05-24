@@ -1,6 +1,6 @@
 ﻿using Application.ADTO;
 using Application.Commands;
-using Application.Interfaces;
+using Application.Interfaces.Repository;
 using MediatR;
 
 namespace Application.CommandHandler.Categorias.CategoriasHandler

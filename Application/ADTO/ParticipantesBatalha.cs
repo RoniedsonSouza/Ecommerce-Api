@@ -14,6 +14,9 @@ namespace Application.ADTO
         public int Tipo { get; set; }
         public int Ranking { get; set; }
         public int Votos { get; set; }
+        public int Grupo { get; set; }
+        public int Posicao { get; set; }
+        public bool Vencedor { get; set; }
         public  virtual TipoParticipanteBatalha TipoParticipante { get; set; }
         public virtual Usuario Usuario { get; set; }
         public virtual Batalha Batalha { get; set; }

@@ -2,6 +2,7 @@
 using Application.Filters;
 using Application.Interfaces.Repository;
 using Dapper;
+using Infraestructure;
 
 namespace Domain.Repositories
 {

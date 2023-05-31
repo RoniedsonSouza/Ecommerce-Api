@@ -1,0 +1,17 @@
+C:\Codigos\Ecommerce-Api\Infraestructure\bin\Debug\net6.0\Infraestructure.deps.json
+C:\Codigos\Ecommerce-Api\Infraestructure\bin\Debug\net6.0\Infraestructure.runtimeconfig.json
+C:\Codigos\Ecommerce-Api\Infraestructure\bin\Debug\net6.0\Infraestructure.dll
+C:\Codigos\Ecommerce-Api\Infraestructure\bin\Debug\net6.0\Infraestructure.pdb
+C:\Codigos\Ecommerce-Api\Infraestructure\bin\Debug\net6.0\Application.dll
+C:\Codigos\Ecommerce-Api\Infraestructure\bin\Debug\net6.0\Application.pdb
+C:\Codigos\Ecommerce-Api\Infraestructure\obj\Debug\net6.0\Infraestructure.csproj.AssemblyReference.cache
+C:\Codigos\Ecommerce-Api\Infraestructure\obj\Debug\net6.0\Infraestructure.GeneratedMSBuildEditorConfig.editorconfig
+C:\Codigos\Ecommerce-Api\Infraestructure\obj\Debug\net6.0\Infraestructure.AssemblyInfoInputs.cache
+C:\Codigos\Ecommerce-Api\Infraestructure\obj\Debug\net6.0\Infraestructure.AssemblyInfo.cs
+C:\Codigos\Ecommerce-Api\Infraestructure\obj\Debug\net6.0\Infraestructure.csproj.CoreCompileInputs.cache
+C:\Codigos\Ecommerce-Api\Infraestructure\obj\Debug\net6.0\Infraestructure.csproj.CopyComplete
+C:\Codigos\Ecommerce-Api\Infraestructure\obj\Debug\net6.0\Infraestructure.dll
+C:\Codigos\Ecommerce-Api\Infraestructure\obj\Debug\net6.0\refint\Infraestructure.dll
+C:\Codigos\Ecommerce-Api\Infraestructure\obj\Debug\net6.0\Infraestructure.pdb
+C:\Codigos\Ecommerce-Api\Infraestructure\obj\Debug\net6.0\Infraestructure.genruntimeconfig.cache
+C:\Codigos\Ecommerce-Api\Infraestructure\obj\Debug\net6.0\ref\Infraestructure.dll

@@ -1,6 +1,7 @@
 ﻿using Application.ADTO;
 using Application.Interfaces.Repository;
 using Dapper;
+using Infraestructure;
 using System;
 using System.Collections.Generic;
 using System.Linq;

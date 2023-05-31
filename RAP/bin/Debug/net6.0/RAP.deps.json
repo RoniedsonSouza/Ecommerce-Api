@@ -11,7 +11,7 @@
           "AutoMapper": "12.0.0",
           "Autofac": "6.5.0",
           "Autofac.Extensions.DependencyInjection": "8.0.0",
-          "Domain": "1.0.0",
+          "Infraestructure": "1.0.0",
           "MediatR.Extensions.Microsoft.DependencyInjection": "10.0.1",
           "Microsoft.AspNetCore.Authentication.JwtBearer": "6.0.3",
           "Microsoft.EntityFrameworkCore.Design": "6.0.3",
@@ -1320,7 +1320,7 @@
           "Application.dll": {}
         }
       },
-      "Domain/1.0.0": {
+      "Infraestructure/1.0.0": {
         "dependencies": {
           "Application": "1.0.0",
           "Dapper": "2.0.123",
@@ -1331,7 +1331,7 @@
           "Microsoft.EntityFrameworkCore.SqlServer.Design": "1.1.6"
         },
         "runtime": {
-          "Domain.dll": {}
+          "Infraestructure.dll": {}
         }
       }
     }
@@ -2299,7 +2299,7 @@
       "serviceable": false,
       "sha512": ""
     },
-    "Domain/1.0.0": {
+    "Infraestructure/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

@@ -72,14 +72,14 @@
         }
       }
     },
-    "C:\\Codigos\\Ecommerce-Api\\Domain\\Domain.csproj": {
+    "C:\\Codigos\\Ecommerce-Api\\Infraestructure\\Infraestructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Codigos\\Ecommerce-Api\\Domain\\Domain.csproj",
-        "projectName": "Domain",
-        "projectPath": "C:\\Codigos\\Ecommerce-Api\\Domain\\Domain.csproj",
+        "projectUniqueName": "C:\\Codigos\\Ecommerce-Api\\Infraestructure\\Infraestructure.csproj",
+        "projectName": "Infraestructure",
+        "projectPath": "C:\\Codigos\\Ecommerce-Api\\Infraestructure\\Infraestructure.csproj",
         "packagesPath": "C:\\Users\\ronie\\.nuget\\packages\\",
-        "outputPath": "C:\\Codigos\\Ecommerce-Api\\Domain\\obj\\",
+        "outputPath": "C:\\Codigos\\Ecommerce-Api\\Infraestructure\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\ronie\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -186,8 +186,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Codigos\\Ecommerce-Api\\Domain\\Domain.csproj": {
-                "projectPath": "C:\\Codigos\\Ecommerce-Api\\Domain\\Domain.csproj"
+              "C:\\Codigos\\Ecommerce-Api\\Infraestructure\\Infraestructure.csproj": {
+                "projectPath": "C:\\Codigos\\Ecommerce-Api\\Infraestructure\\Infraestructure.csproj"
               }
             }
           }

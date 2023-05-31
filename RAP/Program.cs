@@ -1,9 +1,9 @@
 using Application.ADTO;
-using Application.Mapping;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using AutoMapper;
-using Domain;
+using Infraestructure;
+using Infraestructure.Mapping;
 using MediatR;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;

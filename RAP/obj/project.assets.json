@@ -2053,7 +2053,7 @@
           "bin/placeholder/Application.dll": {}
         }
       },
-      "Domain/1.0.0": {
+      "Infraestructure/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
@@ -2066,10 +2066,10 @@
           "Microsoft.EntityFrameworkCore.SqlServer.Design": "1.1.6"
         },
         "compile": {
-          "bin/placeholder/Domain.dll": {}
+          "bin/placeholder/Infraestructure.dll": {}
         },
         "runtime": {
-          "bin/placeholder/Domain.dll": {}
+          "bin/placeholder/Infraestructure.dll": {}
         }
       }
     }
@@ -6991,10 +6991,10 @@
       "path": "../Application/Application.csproj",
       "msbuildProject": "../Application/Application.csproj"
     },
-    "Domain/1.0.0": {
+    "Infraestructure/1.0.0": {
       "type": "project",
-      "path": "../Domain/Domain.csproj",
-      "msbuildProject": "../Domain/Domain.csproj"
+      "path": "../Infraestructure/Infraestructure.csproj",
+      "msbuildProject": "../Infraestructure/Infraestructure.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -7002,7 +7002,7 @@
       "AutoMapper >= 12.0.0",
       "Autofac >= 6.5.0",
       "Autofac.Extensions.DependencyInjection >= 8.0.0",
-      "Domain >= 1.0.0",
+      "Infraestructure >= 1.0.0",
       "MediatR.Extensions.Microsoft.DependencyInjection >= 10.0.1",
       "Microsoft.AspNetCore.Authentication.JwtBearer >= 6.0.3",
       "Microsoft.EntityFrameworkCore.Design >= 6.0.3",
@@ -7038,8 +7038,8 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "C:\\Codigos\\Ecommerce-Api\\Domain\\Domain.csproj": {
-              "projectPath": "C:\\Codigos\\Ecommerce-Api\\Domain\\Domain.csproj"
+            "C:\\Codigos\\Ecommerce-Api\\Infraestructure\\Infraestructure.csproj": {
+              "projectPath": "C:\\Codigos\\Ecommerce-Api\\Infraestructure\\Infraestructure.csproj"
             }
           }
         }

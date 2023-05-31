@@ -1,6 +1,5 @@
 ﻿using Application.ADTO;
 using Application.Interfaces.Repository;
-using Application.Repositories;
 using Dapper;
 
 namespace Domain.Repositories

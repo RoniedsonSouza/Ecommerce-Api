@@ -1,6 +1,5 @@
 ﻿using Application.ADTO;
 using Application.Interfaces.Repository;
-using Application.Repositories;
 using Dapper;
 using System;
 using System.Collections.Generic;

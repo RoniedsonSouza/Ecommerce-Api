@@ -1,9 +1,9 @@
 ﻿using Application.ADTO;
-using Application.Commands;
+using Application.Commands.Organizacoes;
 using Application.Interfaces.Repository;
 using MediatR;
 
-namespace Application.CommandHandler.Categorias.CategoriasHandler
+namespace Application.CommandHandler.Organizacoes.OrganizacaoHandler
 {
     public class AdicionarOrganizacaoCommandHandler : IRequestHandler<AdicionarOrganizacaoCommand, Organizacao>
     {
@@ -30,7 +30,7 @@ namespace Application.CommandHandler.Categorias.CategoriasHandler
                 Twitch = request.Twitch,
                 CNPJ = request.CNPJ
             };
-            
+
             try
             {
                 var listParticipantes = new List<ParticipantesOrganizacao>();

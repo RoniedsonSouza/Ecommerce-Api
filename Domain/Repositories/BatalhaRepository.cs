@@ -1,7 +1,6 @@
 ﻿using Application.ADTO;
 using Application.Filters;
 using Application.Interfaces.Repository;
-using Application.Repositories;
 using Dapper;
 
 namespace Domain.Repositories

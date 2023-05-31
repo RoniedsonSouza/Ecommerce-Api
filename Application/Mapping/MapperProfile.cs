@@ -2,7 +2,7 @@
 using Application.ADTO.DtoRequests;
 using AutoMapper;
 
-namespace Ecommerce_api.Helpers
+namespace Application.Mapping
 {
     public class MapperProfile : Profile
     {

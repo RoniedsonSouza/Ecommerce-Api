@@ -2,7 +2,7 @@
 using Application.ADTO.DtoRequests;
 using MediatR;
 
-namespace Application.Commands
+namespace Application.Commands.Batalhas
 {
     public class AdicionarBatalhaCommand : DefaultModel, IRequest<Batalha>
     {

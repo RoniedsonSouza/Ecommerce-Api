@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.Commands
+namespace Application.Commands.Organizacoes
 {
     public class AdicionarOrganizacaoCommand : DefaultModel, IRequest<Organizacao>
     {

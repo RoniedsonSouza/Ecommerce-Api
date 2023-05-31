@@ -1,6 +1,6 @@
 ﻿using Application.ADTO;
 using Application.ADTO.DtoRequests;
-using Application.Commands;
+using Application.Commands.Batalhas;
 using Application.Interfaces.Repository;
 using MediatR;
 

@@ -28,7 +28,7 @@ namespace Ecommerce_api.Controllers
             return Ok(response);
         }
 
-        [HttpGet("GetBatalhaById/{id}")]
+        [HttpGet("{id}")]
         public async Task<IActionResult> GetBatalhaById(Guid id)
         {
             var response = await _batalhaService.GetBatalhaById(id);

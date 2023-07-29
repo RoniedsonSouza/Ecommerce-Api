@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "b0gmDpMbqqZdgYpJwYpFAza3M4R7T5km+iepjM5h4J91QTgsy6NZFBTVb1f19e8NoRxHpUfVfXioFY/e5YNcWw==",
+  "dgSpecHash": "R8R/BU8bc9GADT8cYT8uUsCH48S/0ww6KXMvaQfH/9Ia4O0oV+hmB2gNngdgPSaqML8ULX4iTYmYQyeZh3nj4A==",
   "success": true,
   "projectFilePath": "C:\\Codigos\\Ecommerce-Api\\Application\\Application.csproj",
   "expectedPackageFiles": [
@@ -27,6 +27,7 @@
     "C:\\Users\\ronie\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\6.0.0\\microsoft.extensions.logging.abstractions.6.0.0.nupkg.sha512",
     "C:\\Users\\ronie\\.nuget\\packages\\microsoft.extensions.options\\6.0.0\\microsoft.extensions.options.6.0.0.nupkg.sha512",
     "C:\\Users\\ronie\\.nuget\\packages\\microsoft.extensions.primitives\\6.0.0\\microsoft.extensions.primitives.6.0.0.nupkg.sha512",
+    "C:\\Users\\ronie\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512",
     "C:\\Users\\ronie\\.nuget\\packages\\system.collections.immutable\\6.0.0\\system.collections.immutable.6.0.0.nupkg.sha512",
     "C:\\Users\\ronie\\.nuget\\packages\\system.diagnostics.diagnosticsource\\6.0.0\\system.diagnostics.diagnosticsource.6.0.0.nupkg.sha512",
     "C:\\Users\\ronie\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512"

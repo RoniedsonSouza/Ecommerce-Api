@@ -164,9 +164,6 @@ namespace Domain.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("BatalhaIdBatalha")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<Guid>("IdBatalha")
                         .HasColumnType("uniqueidentifier");
 
@@ -176,7 +173,7 @@ namespace Domain.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("BatalhaIdBatalha");
+                    b.HasIndex("IdBatalha");
 
                     b.ToTable("ImagensBatalha");
                 });
@@ -371,6 +368,12 @@ namespace Domain.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("bit");
 
                     b.Property<Guid>("IdOrganizacao")
                         .HasColumnType("uniqueidentifier");
@@ -727,9 +730,13 @@ namespace Domain.Migrations
 
             modelBuilder.Entity("Application.ADTO.ImagensBatalha", b =>
                 {
-                    b.HasOne("Application.ADTO.Batalha", null)
+                    b.HasOne("Application.ADTO.Batalha", "Batalha")
                         .WithMany("ImagensBatalha")
-                        .HasForeignKey("BatalhaIdBatalha");
+                        .HasForeignKey("IdBatalha")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Batalha");
                 });
 
             modelBuilder.Entity("Application.ADTO.ParticipantesBatalha", b =>

@@ -1,49 +1,35 @@
 ﻿using Application.ADTO;
+using Application.ADTO.DtoResponse;
 using Application.Commands.Organizacoes;
 using Application.Interfaces.Repository;
+using AutoMapper;
 using MediatR;
 
 namespace Application.CommandHandler.Organizacoes.OrganizacaoHandler
 {
-    public class AdicionarOrganizacaoCommandHandler : IRequestHandler<AdicionarOrganizacaoCommand, Organizacao>
+    public class AdicionarOrganizacaoCommandHandler : IRequestHandler<AdicionarOrganizacaoCommand, OrganizacaoResponse>
     {
+        private readonly IMapper _mapper;
         private readonly IMediator _mediator;
         private readonly IOrganizacaoRepository _repository;
         private readonly IParticipantesOrganizacaoRepository _participantesOrganizacaoRepository;
-        public AdicionarOrganizacaoCommandHandler(IMediator mediator, IOrganizacaoRepository repository, IParticipantesOrganizacaoRepository participantesOrganizacaoRepository)
+        public AdicionarOrganizacaoCommandHandler(IMediator mediator, IOrganizacaoRepository repository, IParticipantesOrganizacaoRepository participantesOrganizacaoRepository, IMapper mapper)
         {
             _mediator = mediator;
             _repository = repository;
             _participantesOrganizacaoRepository = participantesOrganizacaoRepository;
+            _mapper = mapper;
         }
 
-        public async Task<Organizacao> Handle(AdicionarOrganizacaoCommand request, CancellationToken cancellationToken)
+        public async Task<OrganizacaoResponse> Handle(AdicionarOrganizacaoCommand request, CancellationToken cancellationToken)
         {
-            var organizacao = new Organizacao()
-            {
-                Nome = request.Nome,
-                LogoOrganizacao = request.LogoOrganizacao,
-                Rua = request.Rua,
-                Cep = request.Cep,
-                Referencia = request.Referencia,
-                Youtube = request.Youtube,
-                Twitch = request.Twitch,
-                CNPJ = request.CNPJ
-            };
+            Organizacao organizacao = _mapper.Map<Organizacao>(request);
 
             try
             {
-                var listParticipantes = new List<ParticipantesOrganizacao>();
-                var insertOrganization = await _repository.Insert(organizacao);
-
-                foreach (var participantes in request.Participantes)
-                {
-                    listParticipantes.Add(new ParticipantesOrganizacao() { IdOrganizacao = insertOrganization.IdOrganizacao, IdUsuarioParticipante = participantes.IdUsuarioParticipante });
-                }
-
-                await _participantesOrganizacaoRepository.InsertRangeAsync(listParticipantes);
-                organizacao.Participantes = listParticipantes;
-                return organizacao;
+                await _repository.Insert(organizacao);
+                OrganizacaoResponse response = _mapper.Map<OrganizacaoResponse>(organizacao);
+                return response;
             }
             catch (Exception ex)
             {

@@ -1,6 +1,6 @@
 ﻿using Application.ADTO;
 using Application.ADTO.DtoRequests;
-using Application.Interfaces.Repository;
+using Application.Interfaces.Services;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -19,22 +19,22 @@ namespace RAP.Controllers
     public class AuthController : RAPControllerBase
     {
         private readonly IConfiguration _configuration;
-        private readonly ILoginCacheRepository _loginCacheRepository;
         private readonly UserManager<Usuario> _userManager;
         private readonly SignInManager<Usuario> _signInManager;
         private readonly IMapper _mapper;
+        private readonly ILoginCacheService _loginCacheService;
 
         public AuthController(IConfiguration configuration,
-            ILoginCacheRepository loginCacheRepository,
             UserManager<Usuario> userManager,
             SignInManager<Usuario> signInManager,
-            IMapper mapper)
+            IMapper mapper,
+            ILoginCacheService loginCacheService)
         {
             _configuration = configuration;
-            _loginCacheRepository = loginCacheRepository;
             _userManager = userManager;
             _signInManager = signInManager;
             _mapper = mapper;
+            _loginCacheService = loginCacheService;
         }
 
         [HttpGet]
@@ -51,15 +51,15 @@ namespace RAP.Controllers
             {
                 var user = await _userManager.FindByNameAsync(usuario.UserName);
                 var result = await _signInManager.CheckPasswordSignInAsync(user, usuario.Password, false);
-                var userLogged = await _loginCacheRepository.GetUserLoginByUserName(usuario.UserName);
+                var userLogged = await _loginCacheService.GetUserLoginByUserName(usuario.UserName);
 
                 if (result.Succeeded)
                 {
                     var appUser = await _userManager.Users
                         .FirstOrDefaultAsync(x => x.NormalizedUserName == usuario.UserName.ToUpper());
-                    var generatedToken = GenerateJWToken(appUser).Result;
+                    var generatedToken = GenerateJWToken(appUser, usuario.ManterConectado).Result;
 
-                    var criarLoginCache = await _loginCacheRepository.Insert(new LoginCache
+                    var criarLoginCache = await _loginCacheService.Inserir(new LoginCache
                     {
                         IdUsuario = user.Id,
                         UserName = user.UserName,
@@ -91,7 +91,7 @@ namespace RAP.Controllers
             }
         }
 
-        private async Task<string> GenerateJWToken(Usuario usuario)
+        private async Task<string> GenerateJWToken(Usuario usuario, bool manterConectado)
         {
             var claims = new List<Claim>
             {
@@ -115,7 +115,7 @@ namespace RAP.Controllers
             var tokenDescription = new SecurityTokenDescriptor
             {
                 Subject = new ClaimsIdentity(claims),
-                Expires = DateTime.Now.AddDays(1),
+                Expires = manterConectado ? null : DateTime.Now.AddDays(1),
                 SigningCredentials = creds
             };
 
@@ -148,10 +148,9 @@ namespace RAP.Controllers
         }
 
         [HttpPost("DeslogarUsuario")]
-        public async Task<IActionResult> Deslogar()
+        public async Task Deslogar()
         {
-            var deslogado = await _loginCacheRepository.DeleteUserByToken(token);
-            return deslogado ? Ok() : BadRequest();
+            var deslogado = await _loginCacheService.DeleteUserByToken(token);
         }
     }
 }

@@ -1,5 +1,5 @@
 ﻿using Application.Commands.Batalhas;
-using Application.Filters;
+using Application.Commands.Filters;
 using Application.Interfaces.Repository;
 using Application.Interfaces.Services;
 using MediatR;

@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Domain.Repositories
+namespace Infraestructure.Repositories
 {
     public class EventoRepository : Repository<Evento>
     {
@@ -28,12 +28,12 @@ namespace Domain.Repositories
                 var adicionarParticipante = await _context.Connection.ExecuteAsync(sql, new
                 {
                     IdParticipanteEvento = participanteId,
-                    IdEvento = participante.IdEvento,
-                    IdUsuario = participante.IdUsuario,
-                    Nome = participante.Nome,
-                    Apelido = participante.Apelido,
-                    FotoParticipante = participante.FotoParticipante,
-                    Tipo = participante.Tipo
+                    participante.IdEvento,
+                    participante.IdUsuario,
+                    participante.Nome,
+                    participante.Apelido,
+                    participante.FotoParticipante,
+                    participante.Tipo
                 });
 
                 if (adicionarParticipante == 0)

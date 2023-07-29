@@ -1,10 +1,10 @@
 ﻿using Application.ADTO;
-using Application.Filters;
+using Application.Commands.Filters;
 using Application.Interfaces.Repository;
 using Dapper;
 using Infraestructure;
 
-namespace Domain.Repositories
+namespace Infraestructure.Repositories
 {
     public class BatalhaRepository : Repository<Batalha>, IBatalhaRepository
     {
@@ -25,17 +25,17 @@ namespace Domain.Repositories
                 var adicionarParticipante = await _context.Connection.ExecuteAsync(sql, new
                 {
                     IdParticipanteBatalha = participanteId,
-                    IdBatalha = participante.IdBatalha,
-                    IdUsuario = participante.IdUsuario,
-                    Nome = participante.Nome,
-                    Apelido = participante.Apelido,
-                    FotoParticipante = participante.FotoParticipante,
-                    Tipo = participante.Tipo,
-                    Ranking = participante.Ranking,
-                    Votos = participante.Votos,
-                    Grupo = participante.Grupo,
-                    Posicao = participante.Posicao,
-                    Vencedor = participante.Vencedor
+                    participante.IdBatalha,
+                    participante.IdUsuario,
+                    participante.Nome,
+                    participante.Apelido,
+                    participante.FotoParticipante,
+                    participante.Tipo,
+                    participante.Ranking,
+                    participante.Votos,
+                    participante.Grupo,
+                    participante.Posicao,
+                    participante.Vencedor
                 });
 
                 if (adicionarParticipante == 0)

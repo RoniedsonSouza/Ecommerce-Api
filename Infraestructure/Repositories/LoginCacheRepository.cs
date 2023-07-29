@@ -3,7 +3,7 @@ using Application.Interfaces.Repository;
 using Dapper;
 using Infraestructure;
 
-namespace Domain.Repositories
+namespace Infraestructure.Repositories
 {
     public class LoginCacheRepository : Repository<LoginCache>, ILoginCacheRepository
     {

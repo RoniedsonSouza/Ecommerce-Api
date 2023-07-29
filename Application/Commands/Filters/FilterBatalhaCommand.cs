@@ -1,7 +1,7 @@
 ﻿using Application.ADTO;
 using MediatR;
 
-namespace Application.Filters
+namespace Application.Commands.Filters
 {
     public class FilterBatalhaCommand : IRequest<List<Batalha>>
     {

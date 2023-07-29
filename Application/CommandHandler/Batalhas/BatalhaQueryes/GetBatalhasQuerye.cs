@@ -1,5 +1,5 @@
 ﻿using Application.ADTO;
-using Application.Filters;
+using Application.Commands.Filters;
 using Application.Interfaces.Repository;
 using MediatR;
 

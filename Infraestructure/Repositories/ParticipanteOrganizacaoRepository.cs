@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Domain.Repositories
+namespace Infraestructure.Repositories
 {
     public class ParticipanteOrganizacaoRepository : Repository<ParticipantesOrganizacao>, IParticipantesOrganizacaoRepository
     {
@@ -30,7 +30,7 @@ namespace Domain.Repositories
             {
                 organizacao = await _context.Connection.QuerySingleAsync<Organizacao>(@$"SELECT * FROM Organizacao WHERE IdOrganizacao = @IdOrganizacao", new
                 {
-                    IdOrganizacao = participante.IdOrganizacao,
+                    participante.IdOrganizacao,
                 });
 
                 return organizacao;

@@ -2,6 +2,7 @@ using Application.ADTO;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using AutoMapper;
+using Domain.Services;
 using Infraestructure;
 using Infraestructure.Mapping;
 using MediatR;
@@ -25,7 +26,6 @@ builder.Services.AddControllers(options =>
     //.AddJsonOptions(o => o.JsonSerializerOptions
     //            .ReferenceHandler = ReferenceHandler.Preserve);
 
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
@@ -100,11 +100,12 @@ app.Run();
 static void BuildDependencyInjectionProvider(WebApplicationBuilder builder)
 {
     var coreAssembly = Assembly.GetAssembly(typeof(Batalha));
+    var servicesAssembly = Assembly.GetAssembly(typeof(BatalhaService));
     var infraAssembly = Assembly.GetAssembly(typeof(ApplicationDbContext));
     var webAssembly = Assembly.GetExecutingAssembly();
     builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
     builder.Host.ConfigureContainer<ContainerBuilder>((_, builder) =>
     {
-        builder.RegisterAssemblyTypes(webAssembly, coreAssembly, infraAssembly).AsImplementedInterfaces();
+        builder.RegisterAssemblyTypes(webAssembly, coreAssembly, infraAssembly, servicesAssembly).AsImplementedInterfaces();
     });
 }

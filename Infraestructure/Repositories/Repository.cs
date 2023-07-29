@@ -2,7 +2,7 @@
 using Infraestructure;
 using Microsoft.EntityFrameworkCore;
 
-namespace Domain.Repositories
+namespace Infraestructure.Repositories
 {
     public class Repository<T> : IRepository<T> where T : class
     {
